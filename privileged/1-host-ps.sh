@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ue
+set -uex
 
 mkdir /tmp/cgrp && mount -t cgroup -o memory cgroup /tmp/cgrp && mkdir /tmp/cgrp/x
  
@@ -13,3 +13,6 @@ echo "ps aux > $host_path/output" >> /cmd
 chmod a+x /cmd
  
 sh -c "echo \$\$ > /tmp/cgrp/x/cgroup.procs"
+
+sleep 2
+cat "/output"
